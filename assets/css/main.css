@@ -1,0 +1,11 @@
+:root {
+    --def-green: rgb(0,87,16);
+}
+
+.card-title{
+    background-color: var(--def-green);
+    color:white;
+    margin:-1rem -1rem 0rem -1rem;
+    padding:15px;
+    text-align: start;
+}
