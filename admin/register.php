@@ -51,7 +51,7 @@
             <div class="col-sm-12 col-md-10 offset-md-1 mt-5">
                 <div class="card shadow">
                     <div class="card-body">
-                        <h5 class="card-title"><i class="fas fa-user-tie"></i> Signup with Khodaibari Jame Mosjid.</h5>
+                        <h5 class="card-title">Signup with Khodaibari Jame Mosjid.</h5>
                         <form class="mt-3 w-100" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
                             <div class="container-fluid">
                                 <div class="row">

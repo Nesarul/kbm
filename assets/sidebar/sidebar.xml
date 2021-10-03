@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<Menu>
+	<item>
+		<caption>Dashboard</caption>
+		<link>../users/dashboard.php</link>
+	</item>
+	<item>
+		<caption>User Management</caption>
+		<link>#</link>
+	</item>
+	<item>
+		<caption>Announcement</caption>
+		<link>#</link>
+	</item>
+	<item>
+		<caption>Comitee</caption>
+		<link>#</link>
+	</item>
+</Menu>

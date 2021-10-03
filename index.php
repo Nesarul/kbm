@@ -5,7 +5,6 @@
 ?>
     <link rel="stylesheet" href="./assets/css/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="./assets/css/main.css">
-    <script src="https://kit.fontawesome.com/6123117173.js" crossorigin="anonymous"></script>
 </head>
 <body>
 
@@ -14,7 +13,7 @@
         <div class="col-sm-6 col-md-4 offset-md-4 offset-sm-3 mt-5">
             <div class="card text-center">
                 <div class="card-body">
-                    <h5 class="card-title"><i class="fas fa-user-tie"></i> Please Login to continue.</h5>
+                    <h5 class="card-title">Please Login to continue.</h5>
                     <form class="mt-3" action="./admin/login.php" method="post">
                         <div class="mb-3 row">
                             <label for="userEmail" class="col-sm-5 col-form-label text-end">Email</label>
