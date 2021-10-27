@@ -85,7 +85,7 @@
                                     <thead>Collection By Week for the Month of 
                                         <select class="b-bord" style="width:120px;" id="collMonth" name="collMonth"> 
                                             <?php foreach($month as $key => $data): ?>
-                                                <option value=<?php echo $key; ?>><?php echo $data; ?></option>
+                                                <option value=<?php echo ++$key; ?>><?php echo $data; ?></option>
                                             <?php endforeach; ?> 
                                         </select> &nbsp; &nbsp;
                                         <input class="b-bord" type="number" name="collYear" id="collYear" value="2021" style="width:80px"> &nbsp;&nbsp;
@@ -98,23 +98,8 @@
                                             <th>Amount</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>01.01.2021</td>
-                                            <td>8,530</td>
-                                        </tr>
-                                        <tr>
-                                            <td>01.01.2021</td>
-                                            <td>8,530</td>
-                                        </tr>
-                                        <tr>
-                                            <td>01.01.2021</td>
-                                            <td>8,530</td>
-                                        </tr>
-                                        <tr>
-                                            <td>01.01.2021</td>
-                                            <td>8,530</td>
-                                        </tr>
+                                    <tbody id="tb-collMonth">
+                                        
                                     </tbody>
                                     <tfoot>
                                         <tr>

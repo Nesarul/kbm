@@ -1,13 +1,15 @@
 jumaCollMonth = () =>{
-    var y = $('#collYear').val();
-    var m = $('#collMonth').val();
+    var da;
     $.ajax({
         type:'POST',
         url:'jumaByMonth.php',
-        data:{y:y,m:m},
+        data:{y:$('#collYear').val(),m:$('#collMonth').val()},
         dataType:'JSON',
         success:function(data){
-            alert(data.msg);
+            for(i = 0; i < data.length; ++i){
+               da+="<tr><td>"+data[i].juma_date+"</td><td>"+data[i].juma_amount+"</td></tr>";
+            }
+            $('#tb-collMonth').html(da);
         },
         error:function(data){
             alert("Failed");
