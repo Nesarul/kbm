@@ -79,7 +79,19 @@
                         <div class="col-sm-6 col-12">
                             <div class="table-responsive-sm">
                                 <table class="table">
-                                    <thead>Collection By Week for the Month of</thead>
+                                    <?php
+                                        $month = array('January','February','March','April','May','June','July','August','September','October','November','December');
+                                    ?>
+                                    <thead>Collection By Week for the Month of 
+                                        <select class="b-bord" style="width:120px;" id="collMonth" name="collMonth"> 
+                                            <?php foreach($month as $key => $data): ?>
+                                                <option value=<?php echo $key; ?>><?php echo $data; ?></option>
+                                            <?php endforeach; ?> 
+                                        </select> &nbsp; &nbsp;
+                                        <input class="b-bord" type="number" name="collYear" id="collYear" value="2021" style="width:80px"> &nbsp;&nbsp;
+                                        <button type="button" class="btn btn-outline-success btn-sm" onClick = "jumaCollMonth();">Go</button>
+                                    </thead>
+
                                     <thead>
                                         <tr>
                                             <th>Data</th>
@@ -126,7 +138,7 @@
                                     <tbody>
                                         <?php
                                             $res = db::getInstance()->query("select month(juma_date) as month, sum(juma_amount) as taka from juma where year(juma_date) = 2021 group by Month(juma_date)")->getResults();
-                                            $month = array('January','February','March','April','May','June','July','August','September','October','November','December');
+                                            
                                             $gd = 0;
                                             if($res): foreach($res as $key=>$val):
                                         ?>
@@ -159,5 +171,6 @@
             $('.right-bar').toggleClass('right-bar-active');
         }
     </script>
+    <script src="../assets/js/main.js"></script>
 </body>
 </html>

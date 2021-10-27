@@ -1,7 +1,5 @@
 <?php
-    require_once('./admin/functions.php');
-    $pageTitle = "Login Page";
-    require_once(SITE_ROOT.'inc'.DS.'header.php');
+   require_once('./inc/header.php');
 ?>
     <link rel="stylesheet" href="./assets/css/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="./assets/css/main.css">
@@ -38,5 +36,5 @@
     </div>
 </div>
 <?php
-    require_once(SITE_ROOT.'inc'.DS.'footer.php');
+    require_once('inc/footer.php');
 ?>
