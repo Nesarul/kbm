@@ -1,11 +1,11 @@
 <?php
     require_once('../admin/db/db.php');
-    $errors[] = "";
+    $output['msg'] = "Everything is Fine";
     if(isset($_POST['m'])){
         if(isset($_POST['y'])){
-            $res = db::getInstance()->query("SELECT * FROM juma WHERE MONTH(juma_date) = '".$_POST['m']."' AND YEAR(juma_date) = '".$_POST['y']."'")->getResults();
-        }else $errors['msg'] = "Year Not set or Year Errors";
-    }else $errors['msg'] = "Month Not Set Or Month Errors";
-    // if(lenth($errors) > 0 )
-    //     $res = $errors;
-    echo json_encode($res);
+            $output['res'] = db::getInstance()->query("SELECT * FROM juma WHERE MONTH(juma_date) = '".$_POST['m']."' AND YEAR(juma_date) = '".$_POST['y']."'")->getResults();
+            $output['mTotal'] = db::getInstance()->query("SELECT SUM(juma_amount)  as mTotal FROM juma WHERE MONTH(juma_date) = '".$_POST['m']."' AND YEAR(juma_date) = '".$_POST['y']."'")->getResults();
+        }else $output['msg'] = "Year Not set or Year Errors";
+    }else $output['msg'] = "Month Not Set Or Month Errors";
+   
+    echo json_encode($output);

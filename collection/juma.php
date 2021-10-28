@@ -73,38 +73,46 @@
         <div class="container-fluid">
             <div class="row bg-f6">
                 <div class="col">
-                    <h4>Juma Collection</h4>
+                    <div class="row my-3">
+                        <div class="col-6">
+                            <h4>Juma Collection</h4>
+                        </div>
+                        <div class="col-6 text-end">
+                            <button type="button" class="btn btn-outline-info btn-sm" data-bs-toggle="modal" data-bs-target="#jumaEntry">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
+                                    <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
+                                </svg>
+                                New Entry
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Button trigger modal -->
+                    
+
                     <hr>
                     <div class="row">
                         <div class="col-sm-6 col-12">
                             <div class="table-responsive-sm">
+                                <?php $month = array('January','February','March','April','May','June','July','August','September','October','November','December'); ?>
+                                <h5>Collection By Week for the Month of 
+                                    <select class="b-bord" style="width:120px;" id="collMonth" name="collMonth"> 
+                                        <?php foreach($month as $key => $data): ?>
+                                            <option value=<?php echo ++$key; ?>><?php echo $data; ?></option>
+                                        <?php endforeach; ?> 
+                                    </select> &nbsp; &nbsp;
+                                    <input class="b-bord" type="number" name="collYear" id="collYear" value="" style="width:80px"> &nbsp;&nbsp;
+                                    <button type="button" class="btn btn-outline-success btn-sm" onClick = "jumaCollMonth();">Go</button>
+                                </h5>
                                 <table class="table">
-                                    <?php
-                                        $month = array('January','February','March','April','May','June','July','August','September','October','November','December');
-                                    ?>
-                                    <thead>Collection By Week for the Month of 
-                                        <select class="b-bord" style="width:120px;" id="collMonth" name="collMonth"> 
-                                            <?php foreach($month as $key => $data): ?>
-                                                <option value=<?php echo ++$key; ?>><?php echo $data; ?></option>
-                                            <?php endforeach; ?> 
-                                        </select> &nbsp; &nbsp;
-                                        <input class="b-bord" type="number" name="collYear" id="collYear" value="2021" style="width:80px"> &nbsp;&nbsp;
-                                        <button type="button" class="btn btn-outline-success btn-sm" onClick = "jumaCollMonth();">Go</button>
+                                    <thead><tr><th>Data</th><th>Receipt No.</th><th>Amount</th></tr>
                                     </thead>
-
-                                    <thead>
-                                        <tr>
-                                            <th>Data</th>
-                                            <th>Amount</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="tb-collMonth">
-                                        
-                                    </tbody>
+                                    <tbody id="tb-collMonth"></tbody>
                                     <tfoot>
                                         <tr>
-                                            <td>01.01.2021</td>
-                                            <td>8,530</td>
+                                            <td>Grand Total</td>
+                                            <td></td>
+                                            <td id="mTotal"></td>
                                         </tr>
                                     </tfoot>
                                 </table>
@@ -113,49 +121,90 @@
                         <div class="col-sm-6 col-12">
                             <div class="table-responsive-sm">
                                 <table class="table">
-                                    <thead>Collection By Month for the Year of</thead>
+                                    <thead>
+                                        Collection By Month for the Year of <input class="b-bord" type="number" name="collY" id="collY" value="" style="width:80px"> &nbsp;&nbsp;
+                                        <button type="button" class="btn btn-outline-success btn-sm" onClick = "jumaCollYear();">Go</button>
+                                    </thead>
                                     <thead>
                                         <tr>
                                             <th>Month</th>
                                             <th>Amount</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                        <?php
-                                            $res = db::getInstance()->query("select month(juma_date) as month, sum(juma_amount) as taka from juma where year(juma_date) = 2021 group by Month(juma_date)")->getResults();
-                                            
-                                            $gd = 0;
-                                            if($res): foreach($res as $key=>$val):
-                                        ?>
-                                        <tr>
-                                            <td><?php echo $month[$val->month-1]; ?></td>
-                                            <td><?php echo $val->taka; $gd+= $val->taka; ?></td>
-                                        </tr>
-                                        <?php endforeach; endif; ?>
+                                    <tbody id="tb-collYear">
+                                        
                                     </tbody>
                                     <tfoot>
                                         <tr>
                                             <td>Grand Total</td>
-                                            <td><?php echo $gd; ?></td>
+                                            <td id="yTotal"></td>
                                         </tr>
                                     </tfoot>
                                 </table>
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
     </div>
 
-    <script>
-        function expMenu(){
-            $('[id^=exp_]').toggleClass('d-none').toggleClass('d-block');
-            $('#sidebar, #su-menu').toggleClass('active');
-            $('.right-bar').toggleClass('right-bar-active');
-        }
-    </script>
+    
+    <!-- Modal -->
+    <div class="modal fade" id="jumaEntry" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="jumaEntryLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="jumaEntryLabel">Insert New Entry for Juma</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="regEntry">
+                        <div class="container">
+                            <div class="row">
+                                <div class="mb-3 col-4 text-end">
+                                    <label for="coll-rec">Receipt No.</label>
+                                </div>
+                                <div class="mb-3 col-8">
+                                    <input class="form-control" type="number" name="coll-rec" id="coll-rec" >
+                                    <span class="small text-danger d-none">Receipt No. Required.</span>
+                                </div>
+                                <div class="mb-3 col-4 text-end">
+                                    <label for="coll-date">Date</label>
+                                </div>
+                                <div class="mb-3 col-8">
+                                    <input class="form-control" type="date" name="coll-date" id="coll-date" value="<?php echo date('Y-m-d'); ?>">
+                                    <span class="small text-danger d-none">Must be Friday.</span>
+                                </div>
+                                <div class="mb-3 col-4 text-end">
+                                    <label for="coll-amount">Amount</label>
+                                </div>
+                                <div class="mb-3 col-8">
+                                    <input class="form-control" type="number" name="coll-amount" id="coll-amount">
+                                    <span class="small text-danger d-none">Amount Required.</span>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" onclick="registerEntry();">Register Entry</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../assets/css/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="../assets/js/main.js"></script>
+    <script type="text/javascript">
+        $(function(){
+            var d = new Date();
+            $('#collYear, #collY').val(d.getFullYear());
+            $('#collMonth').val(parseInt(d.getMonth()));
+            jumaCollMonth();
+            jumaCollYear();
+        })
+    </script>
 </body>
 </html>
