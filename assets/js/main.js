@@ -99,3 +99,39 @@ registerEntry = () =>{
 }
 /* Juma Collection List */
 
+/* Receipt Book */
+readReceipt = () =>{
+    var pk="";
+    $.ajax({
+        type:'POST',
+        url:'readBook.php',
+        data: "",
+        dataType:'JSON',
+        success:function(data){
+            for(i = 0; i < data['res'].length; i++){
+                pk += "<tr><td>"+data['res'][i].rec_book_no+"</td><td>"+data['res'][i].rec_issue_date+"</td><td>"+data['res'][i].client_name+"</td><td>"+data['res'][i].rec_start_no+"</td><td>"+data['res'][i].rec_end_no+"</td><td>"+data['res'][i].issuer+"</td></tr>";
+                $('#bodyBook').html(pk);
+            }
+        },
+        error:function(data){
+            alert("Failed");
+        },
+    });
+}
+
+issueBook = () =>{
+    var pk="";
+    $.ajax({
+        type:'POST',
+        url:'issueBook.php',
+        data: $('#bookEntry').serialize(),
+        dataType:'JSON',
+        success:function(data){
+            readReceipt();
+        },
+        error:function(data){
+            alert("Failed");
+        },
+    });
+}
+/* Receipt Book */

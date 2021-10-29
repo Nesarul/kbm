@@ -6,7 +6,7 @@
 	</item>
 	<item>
 		<caption>User Management</caption>
-		<link>#</link>
+		<link>../clients/index.php</link>
 	</item>
 	<item>
 		<caption>Announcement</caption>
