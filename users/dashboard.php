@@ -76,10 +76,10 @@
                 <div class="col">
                     <div class="row ico-img">
                         <div class="col-md-4 col-sm-6 col-12 col-lg-3 my-2">
-                            <a class="card-link" href="../collection/wages.php">
+                            <a class="card-link" href="../collection/collection.php">
                                 <div class="card shadow card-db">
                                     <div class="card-body">
-                                    <h4>Wages</h4>
+                                    <h4>Monthly Collection</h4>
                                         <h5>Tk. 1,32,353.00</h5>
                                     </div>
                                 </div>

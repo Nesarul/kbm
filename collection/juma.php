@@ -167,7 +167,7 @@
                                 </div>
                                 <div class="mb-3 col-8">
                                     <input class="form-control" type="number" name="coll-rec" id="coll-rec" >
-                                    <span class="small text-danger d-none">Receipt No. Required.</span>
+                                    <span id="rec-no" class="small text-danger d-none">Receipt No. Required.</span>
                                 </div>
                                 <div class="mb-3 col-4 text-end">
                                     <label for="coll-date">Date</label>
@@ -201,7 +201,7 @@
         $(function(){
             var d = new Date();
             $('#collYear, #collY').val(d.getFullYear());
-            $('#collMonth').val(parseInt(d.getMonth()));
+            $('#collMonth').val(parseInt(d.getMonth()+1));
             jumaCollMonth();
             jumaCollYear();
         })

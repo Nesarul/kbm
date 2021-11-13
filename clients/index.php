@@ -1,7 +1,7 @@
 <?php
     require_once('../admin/db/db.php');
     require_once('../assets/sidebar/sidebarImages.php');
-    $ttl = db::getInstance()->query('SELECT count(*) as tt FROM `clients`')->getResults();
+    $ttl = db::getInstance()->query('SELECT count(*) as tt FROM `residents`')->getResults();
     
     $totalRec = $ttl[0]->tt;
     $noPages = 1; 
@@ -85,7 +85,7 @@
                 <div class="col-12">
                     <div class="responsive-table">
                         <table class="table table-sm">
-                            <caption>Clients List</caption>
+                            <caption>Residents List</caption>
                             <thead>
                                 <tr>
                                     <th>ID</th>
@@ -102,19 +102,19 @@
                                 </tr>
                             </thead>
                             <?php
-                                $res = db::getInstance()->query("SELECT * FROM clients LIMIT $start, $limit")->getResults();
+                                $res = db::getInstance()->query("SELECT * FROM residents LIMIT $start, $limit")->getResults();
                                 foreach($res as $key=> $output):
                             ?>
                             
                             <tr>
-                                <td><?php echo $output->client_unId; ?></td>
-                                <td><?php echo $output->client_name; ?></td>
-                                <td><?php echo $output->client_fatherName; ?></td>
-                                <td><?php echo $output->client_address; ?></td>
-                                <td><?php echo $output->client_mobile; ?></td>
+                                <td><?php echo $output->resident_unId; ?></td>
+                                <td><?php echo $output->resident_name; ?></td>
+                                <td><?php echo $output->resident_fatherName; ?></td>
+                                <td><?php echo $output->resident_address; ?></td>
+                                <td><?php echo $output->resident_mobile; ?></td>
                                 <td>
                                     
-                                    <a class="btn m-0 p-1 pt-0 btn-sm btn-info" href="">
+                                    <a class="btn m-0 p-1 pt-0 btn-sm btn-info" href="" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">
                                             <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z"/>
                                             <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z"/>
@@ -164,8 +164,33 @@
                 </div>
             </div>
         </div>
-    
+
+        <!-- Modal -->
+        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="staticBackdropLabel">View user Information</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Understood</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+    <script src="../assets/css/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="../assets/js/main.js"></script>
 </body>
 </html>

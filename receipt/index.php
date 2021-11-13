@@ -178,14 +178,14 @@
                                     <label for="rec-issued-to">Issued To</label>
                                 </div>
                                 <div class="mb-3 col-8">
-                                    <select id="rec-client-name" name="rec-client-name" class="choiceChosen" style="width:200px !important;">
+                                    <select id="rec-resident-name" name="rec-resident-name" class="choiceChosen" style="width:200px !important;">
                                         <option value="0">Please Choose a Name....</option>
                                         <?php
-                                            $sq = "SELECT client_id, client_unId, client_name FROM clients order by client_name asc";
+                                            $sq = "SELECT resident_id, resident_unId, resident_name FROM residents order by resident_name asc";
                                             $res = db::getInstance()->query($sq)->getResults();
                                             foreach($res as $key=> $output):
                                         ?>
-                                            <option value="<?php echo $output->client_id ?>"><?php echo $output->client_unId." - ".$output->client_name; ?></option>
+                                            <option value="<?php echo $output->resident_id ?>"><?php echo $output->resident_unId." - ".$output->resident_name; ?></option>
                                         <?php endforeach; ?>  
                                     </select>
                                     <span class="small text-danger d-none">Amount Required.</span>

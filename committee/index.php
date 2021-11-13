@@ -86,7 +86,7 @@
                 <div class="col-12">
                     <div class="responsive-table">
                         <table class="table table-sm">
-                            <caption>Clients List</caption>
+                            <caption>Residents List</caption>
                             <thead>
                                 <tr>
                                     <th>ID</th>
@@ -100,23 +100,23 @@
                             </thead>
                             <?php
                                 $sq = "SELECT 
-                                cl.client_unId,
-                                cl.client_name,
-                                cl.client_fatherName,
-                                cl.client_status,
-                                cl.client_mobile,
+                                cl.resident_unId,
+                                cl.resident_name,
+                                cl.resident_fatherName,
+                                cl.resident_status,
+                                cl.resident_mobile,
                                 com.com_title, 
                                 com.com_periodFrom,
-                                com.com_periodTo FROM clients AS cl RIGHT JOIN committee AS com ON com.client_id = cl.client_unId";
+                                com.com_periodTo FROM residents AS cl RIGHT JOIN committee AS com ON com.resident_id = cl.resident_unId";
                                 $res = db::getInstance()->query($sq)->getResults();
                                 foreach($res as $key=> $output):
                             ?>
                             
                             <tr>
-                                <td><?php echo $output->client_unId; ?></td>
-                                <td><?php echo $output->client_name; ?></td>
-                                <td><?php echo $output->client_fatherName; ?></td>
-                                <td><?php echo $output->client_mobile; ?></td>
+                                <td><?php echo $output->resident_unId; ?></td>
+                                <td><?php echo $output->resident_name; ?></td>
+                                <td><?php echo $output->resident_fatherName; ?></td>
+                                <td><?php echo $output->resident_mobile; ?></td>
                                 <td><?php echo $output->com_title; ?></td>
                                 <td><?php echo $output->com_periodFrom; ?></td>
                                 <td><?php echo $output->com_periodTo; ?></td>
@@ -164,10 +164,10 @@
                                         <label for="com_id">Dedsignation</label>
                                         <select name="com_id" id="com_id" class="form-control">
                                             <?php
-                                                $selClient = db::getInstance()->query('SELECT * FROM `clients`')->getResults();
-                                                foreach($selClient as $key => $rec):
+                                                $selResident = db::getInstance()->query('SELECT * FROM `residents`')->getResults();
+                                                foreach($selResident as $key => $rec):
                                             ?>
-                                                <option value="<?php echo $rec->client_id; ?>"><?php echo $rec->client_name; ?> </option>
+                                                <option value="<?php echo $rec->resident_id; ?>"><?php echo $rec->resident_name; ?> </option>
                                             <?php endforeach; ?>
                                         </select>
 

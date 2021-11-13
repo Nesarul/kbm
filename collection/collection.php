@@ -12,6 +12,7 @@
     <script src="../assets/js/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="../assets/css/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="../assets/css/main.css">
+    <link rel="stylesheet" href="../assets/css/selectize.default.css">
 </head>
 <body>
     <div class="container-fluid">
@@ -73,9 +74,20 @@
         <div class="container-fluid">
             <div class="row bg-f6">
                 <div class="col">
-                    <h4>Wages</h4>
-                    <hr>
-                    <div class="row">
+                    <div class="row py-2">
+                        <div class="col-6">
+                            <h4>Juma Collection</h4>
+                        </div>
+                        <div class="col-6 text-end">
+                            <button type="button" class="btn btn-outline-info btn-sm" data-bs-toggle="modal" data-bs-target="#newCollection">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
+                                    <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
+                                </svg>
+                                New Entry
+                            </button>
+                        </div>
+                        <hr class="mt-2">
+                    </div>
                         <div class="col-sm-6 col-12">
                             <div class="card w-100">
                                 <div class="card-body">
@@ -91,15 +103,15 @@
                                             </thead>
                                             <tbody>
                                                 <tr>
-                                                    <td>Total Clients</td>
-                                                    <td><?php echo db::getInstance()->query('SELECT * FROM clients')->count(); ?></td>
+                                                    <td>Total Residents</td>
+                                                    <td><?php echo db::getInstance()->query('SELECT * FROM residents')->count(); ?></td>
                                                 </tr>
                                                 <tr>
-                                                    <td>Paid Clients</td>
+                                                    <td>Collected Amount</td>
                                                     <td></td>
                                                 </tr>
                                                 <tr>
-                                                    <td>Average by clients</td>
+                                                    <td>Average by Residents</td>
                                                     <td></td>
                                                 </tr>
                                             </tbody>
@@ -128,14 +140,72 @@
                 </div>
             </div>
         </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="newCollection" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="newCollectionLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="newCollectionLabel">New Collection</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="newCollection">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-md-6 col-sm-12 mb-3">
+                                        <label for="nc_receipt" class="form-label">Receipt No.</label>
+                                        <input type="number" class="form-control" id="nc_receipt" name="nc_receipt">
+                                    </div>
+                                    <div class="col-md-6 col-sm-12 mb-3">
+                                        <label for="nc_amount" class="form-label">Amount Tk.</label>
+                                        <input type="number" class="form-control" id="nc_amount">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-12 mb-3">
+                                <label for="nc_resident" class="form-label">Resident ID.</label>
+                                <select id="nc_resident" class="demo-default" placeholder="Select a Resident">
+                                    <option value="">Select a Resident</option>
+                                    <?php 
+                                        $res = db::getInstance()->query('SELECT resident_id,resident_unId, resident_name FROM residents')->getResults(); 
+                                        foreach($res as $key => $resName):
+                                    ?>
+                                    <option value="<?php echo $resName->resident_id; ?>"><?php echo $resName->resident_unId." - ".$resName->resident_name; ?></option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" onclick="updateCollection();" class="btn btn-primary">Update</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
     </div>
 
+    <script src="../assets/css/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../assets/js/selectize.min.js"></script>
+    <script src="../assets/js/main.js"></script>
     <script>
+        $('#nc_resident').selectize();
         function expMenu(){
             $('[id^=exp_]').toggleClass('d-none').toggleClass('d-block');
             $('#sidebar, #su-menu').toggleClass('active');
             $('.right-bar').toggleClass('right-bar-active');
         }
     </script>
+    <!-- <script>
+        $(function(){
+            $('#nc_resident').on('change',function(){
+                alert($(this).val());
+            });
+        });
+    </script> -->
 </body>
 </html>

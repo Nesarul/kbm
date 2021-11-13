@@ -60,8 +60,7 @@ jumaCollYear = () =>{
 
 // Register New Entery
 registerEntry = () =>{
-    if($('#coll-rec').val() === "")
-    {
+    if($('#coll-rec').val() === ""){
         $('#coll-rec').next().removeClass('d-none');
         return;
     }
@@ -86,6 +85,13 @@ registerEntry = () =>{
         data: $('#regEntry').serialize(),
         dataType:'JSON',
         success:function(data){
+            if(data['msg']==="1"){
+                $('#rec-no').text("This Receipt has been issued. Please try another.");
+                $('#coll-rec').next().removeClass('d-none');
+                return;
+            }
+
+
             $('#collMonth').val(parseInt(data['mth']));
             $('#collYear, #collY').val(data['yr']);
             jumaCollMonth();
@@ -100,6 +106,19 @@ registerEntry = () =>{
 /* Juma Collection List */
 
 /* Receipt Book */
+regReceipt = (recNo, where) => {
+    $.ajax({
+        type:'POST',
+        url:'registerReceipt.php',
+        data: {no:recNo,w:where},
+        dataType:'JSON',
+        success:function(data){
+        },
+        error:function(data){
+            alert("Failed");
+        },
+    });
+}
 readReceipt = () =>{
     var pk="";
     $.ajax({
@@ -135,3 +154,25 @@ issueBook = () =>{
     });
 }
 /* Receipt Book */
+
+
+/* Collection */
+updateCollection = () =>{
+    var residentId = $('#nc_resident').val();
+    if("" === residentId){
+        alert("Please select a Resident to continue");
+        return;
+    }
+    $.ajax({
+        type:'POST',
+        url:'updateCollection.php',
+        data: $('#newCollection').serialize(),
+        dataType:'JSON',
+        success:function(data){
+            readReceipt();
+        },
+        error:function(data){
+            alert("Failed");
+        },
+    })
+}
