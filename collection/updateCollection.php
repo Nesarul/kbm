@@ -1,18 +1,22 @@
 <?php
     require_once('../admin/db/db.php');
-    $errors['msg'] = "Data Entered Successfully!";
-    if(isset($_POST['nc_receipt'])){
-        if(isset($_POST['coll-date'])){
-            if(isset($_POST['coll-amount'])){
-                db::getInstance()->insert('juma',array(
-                    'juma_receipt_no'   => $_POST['coll-rec'],
-                    'juma_date'         => $_POST['coll-date'],     
-                    'juma_amount'       => $_POST['coll-amount']
-                ));
-            }else $errors['msg'] = "Amount Not Set";
-        }else $errors['msg'] = "Collection Date Not Set";
-    }else $errors['msg'] = "Receipt No Not Set";
+    $status['msg'] = "Data Entered Successfully!";
+    if(isset($_POST['date'])){
+        if(isset($_POST['receipt'])){
+            if(isset($_POST['resident'])){
+                if(isset($_POST['amount'])){
+                    if(isset($_POST['col'])){
+                        db::getInstance()->insert('collection',array(
+                            'coll_date'     => $_POST['date'],
+                            'coll_receipt'  => $_POST['receipt'],
+                            'coll_amount'   => $_POST['amount'],
+                            'coll_resident' => $_POST['resident'],
+                            'coll_by'       => $_POST['col']
+                        ));
+                    }else $status['msg'] = "Collector Required";
+                }else $status['msg'] = "Residednt Required";
+            }else $status['msg'] = "Amount Not Set";
+        }else $status['msg'] = "Collection Date Not Set";
+    }else $status['msg'] = "Receipt No Not Set";
    
-    $errors['mth'] = date("m",strtotime($_POST['coll-date']));
-    $errors['yr'] = date('Y',strtotime($_POST['coll-date']));
-    echo json_encode($errors);
+    echo json_encode($status);

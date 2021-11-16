@@ -96,12 +96,14 @@
                             </a>
                         </div>
                         <div class="col-md-4 col-sm-6 col-12 col-lg-3 my-2">
-                            <div class="card shadow card-db">
-                                <div class="card-body">
-                                    <h4>Donation</h4>
-                                    <h5>Tk. 1,32,353.00</h5>
+                            <a class="card-link" href="../donation/index.php">
+                                <div class="card shadow card-db">
+                                    <div class="card-body">
+                                        <h4>Donation</h4>
+                                        <h5>Tk. 1,32,353.00</h5>
+                                    </div>
                                 </div>
-                            </div>
+                            </a>
                         </div>
                         <div class="col-md-4 col-sm-6 col-12 col-lg-3 my-2">
                             <div class="card shadow card-db">

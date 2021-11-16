@@ -163,16 +163,37 @@ updateCollection = () =>{
         alert("Please select a Resident to continue");
         return;
     }
+    var date = $("#nc_date").val();
+    var receipt = $("#nc_receipt").val();
+    var resident = $("#nc_resident").val();
+    var amount = $("#nc_amount").val();
+    var collBy = $('#nc_collector').val();
     $.ajax({
         type:'POST',
         url:'updateCollection.php',
-        data: $('#newCollection').serialize(),
+        data: {date:date, receipt:receipt, resident:resident, amount:amount,col:collBy},
         dataType:'JSON',
         success:function(data){
-            readReceipt();
+            alert(data);
         },
         error:function(data){
             alert("Failed");
         },
     })
+}
+
+updateDonation = () =>{
+    var pk="";
+    $.ajax({
+        type:'POST',
+        url:'donationEntry.php',
+        data: $('#formDonation').serialize(),
+        dataType:'JSON',
+        success:function(data){
+            alert(data['msg']);
+        },
+        error:function(data){
+            alert("Failed");
+        },
+    });
 }
