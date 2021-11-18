@@ -94,32 +94,17 @@
                         <div class="card-body">
                             <h5 class="card-title"><?php echo date('F Y'); ?></h5>
                             <div class="responsive-table">
+                                <h5>Collection By Month for the Year of <input class="b-bord" type="number" name="collY" id="collY" value="2021" style="width:80px"> &nbsp;&nbsp;
+                                    <button type="button" class="btn btn-outline-success btn-sm" onClick = "updateCollection();">Go</button>
+                                </h5>
                                 <table class="table">
-                                    <caption>Collection by Month</caption>
                                     <thead>
                                         <tr>
-                                            <th>Description</th>
+                                            <th>Month</th>
                                             <th>Amount</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>Total Residents</td>
-                                            <td><?php echo db::getInstance()->query('SELECT * FROM residents')->count(); ?></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Collected Amount</td>
-                                            <td>
-                                                <?php 
-                                                    $sql = "SELECT SUM(`coll_amount`) AS `total` FROM collection WHERE month(`coll_date`) = ".date('m');
-                                                    echo(db::getInstance()->query($sql)->getResults()[0]->total); 
-                                                ?>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Average by Residents</td>
-                                            <td></td>
-                                        </tr>
+                                    <tbody id="bodyColl">
                                     </tbody>
                                 </table>
                             </div>
@@ -196,7 +181,7 @@
                                     </div>
                                     <div class="col-md-3 col-6">
                                         <label for="nc_resident">&nbsp;</label>
-                                        <button type="button" onclick="updateCollection();" class="btn btn-primary form-control">Update</button>
+                                        <button type="button" onclick="insertCollection();" class="btn btn-primary form-control">Update</button>
                                     </div>
                                 </div>
                             </div>
@@ -219,6 +204,9 @@
             $('#sidebar, #su-menu').toggleClass('active');
             $('.right-bar').toggleClass('right-bar-active');
         }
+        $(function(){
+            updateCollection();
+        });
     </script>
 </body>
 </html>

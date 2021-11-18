@@ -4,7 +4,7 @@ expMenu = () => {
     $('.right-bar').toggleClass('right-bar-active');
 }
 
-
+var months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
 // Can be found here:  https://stackoverflow.com/questions/14075014/jquery-function-to-to-format-number-with-commas-and-decimal
 
 formatNumber = (number) =>{
@@ -39,7 +39,6 @@ jumaCollMonth = () =>{
 // Year
 jumaCollYear = () =>{
     var da;
-    var months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
     $.ajax({
         type:'POST',
         url:'jumaByYear.php',
@@ -158,6 +157,25 @@ issueBook = () =>{
 
 /* Collection */
 updateCollection = () =>{
+    var pk = "";
+    var i = 0;
+    $.ajax({
+        type:'POST',
+        url:'updateCollection.php',
+        data: {y:$('#collY').val()},
+        dataType:'JSON',
+        success:function(data){
+            for(i = 0; i < data['res'].length; i++){
+                pk += "<tr><td>"+months[data['res'][i].mth-1]+"</td><td>"+data['res'][i].amount+"</td></tr>";
+            }
+            $('#bodyColl').html(pk);
+        },
+        error:function(data){
+            alert("Failed");
+        },
+    })
+}
+insertCollection = () =>{
     var residentId = $('#nc_resident').val();
     if("" === residentId){
         alert("Please select a Resident to continue");
@@ -170,7 +188,7 @@ updateCollection = () =>{
     var collBy = $('#nc_collector').val();
     $.ajax({
         type:'POST',
-        url:'updateCollection.php',
+        url:'insertCollection.php',
         data: {date:date, receipt:receipt, resident:resident, amount:amount,col:collBy},
         dataType:'JSON',
         success:function(data){
@@ -183,14 +201,19 @@ updateCollection = () =>{
 }
 
 updateDonation = () =>{
-    var pk="";
     $.ajax({
         type:'POST',
         url:'donationEntry.php',
         data: $('#formDonation').serialize(),
         dataType:'JSON',
         success:function(data){
-            alert(data['msg']);
+            (data['msg']==='success') ? $('#success-entry').removeClass('d-none').addClass('d-block'):'null';
+            if(data['msg'] === 'success'){
+                var myInterval = setInterval(function () {
+                    $('#success-entry').removeClass('d-block').addClass('d-none');
+                },2000);
+                // clearInterval(myInterval);
+            }
         },
         error:function(data){
             alert("Failed");

@@ -1,6 +1,6 @@
 <?php
     require_once('../admin/db/db.php');
-    $status['msg'] = "Data Entered Successfully!";
+    $status['msg'] = "success";
     
     if(isset($_POST['don_date'])){
         if(isset($_POST['don_receipt'])){
