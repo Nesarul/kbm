@@ -220,3 +220,23 @@ updateDonation = () =>{
         },
     });
 }
+updateWages = () =>{
+    $.ajax({
+        type:'POST',
+        url:'wagesEntry.php',
+        data: $('#formWages').serialize(),
+        dataType:'JSON',
+        success:function(data){
+            (data['msg']==='success') ? $('#success-entry').removeClass('d-none').addClass('d-block'):'null';
+            if(data['msg'] === 'success'){
+                var myInterval = setInterval(function () {
+                    $('#success-entry').removeClass('d-block').addClass('d-none');
+                },2000);
+                // clearInterval(myInterval);
+            }
+        },
+        error:function(data){
+            alert("Failed");
+        },
+    });
+}

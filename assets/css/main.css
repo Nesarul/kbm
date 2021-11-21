@@ -14,17 +14,6 @@
     color:white;
 }
 
-.card-db{
-    min-height:160px;
-}
-.card-db>.card-body{
-    background-color: rgba(17, 30, 48, 0.8);
-    background-image: url("../images/icons/main-iconw2.png");
-    background-size: 60%;
-    background-repeat: no-repeat;
-    color:white;
-}
-
 .left-bar{
     max-width:200px;
     position:absolute;
@@ -142,4 +131,30 @@ a.card-link{
 	border-color: var(--def-green);
 	border-width: 2px;
 	outline: none;
+}
+
+
+
+/* Global Overview Dashboard.*/
+.db-title{
+	position: relative;
+	width:100%;
+	background-color: #388F81;
+	color:#FFEEE6;
+	text-align: center;
+	padding:30px 0px;
+	font-size: 20px;
+	font-weight: bold;
+}
+.stripe{
+	width: 100%;
+	background-color: #388F81;
+	min-height: 75px;
+	position: absolute;
+	left: 0;
+	top:100%;
+	z-index: -1;
+}
+.card-body{
+	color:#388F81;
 }

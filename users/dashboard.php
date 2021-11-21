@@ -9,6 +9,7 @@
     <script src="../assets/js/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="../assets/css/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="../assets/css/main.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.6.0/chart.js" integrity="sha512-CWVDkca3f3uAWgDNVzW+W4XJbiC3CH84P2aWZXj+DqI6PNbTzXbl1dIzEHeNJpYSn4B6U8miSZb/hCws7FnUZA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
 <body>
     <div class="container-fluid">
@@ -72,92 +73,139 @@
         </div>
     
         <div class="container-fluid">
-            <div class="row bg-f6 p-5">
-                <div class="col">
-                    <div class="row ico-img">
-                        <div class="col-md-4 col-sm-6 col-12 col-lg-3 my-2">
+            <div class="row">
+                <div class="db-title">
+                    Dear Bangladesh.
+                    <div class="stripe"></div>
+                </div>
+                <div class="col-md-12 col-sm-12">
+                    <div class="row">
+                        <div class="col-md-4 col-sm-12 mb-4">
                             <a class="card-link" href="../collection/collection.php">
                                 <div class="card shadow card-db">
                                     <div class="card-body">
-                                    <h4>Monthly Collection</h4>
-                                        <h5>Tk. 1,32,353.00</h5>
+                                        <h5>Monthly Collection</h5>
+                                        <h6>Collected Amount: </h6>
+                                        <h6>Current Month: </h6>
+
                                     </div>
+                                    <div id="collGraph" class="p-3 bg-ligh"></div>
                                 </div>
                             </a>
                         </div>
-                        <div class="col-md-4 col-sm-6 col-12 col-lg-3 my-2">
+
+                        <div class="col-md-4 col-sm-12 mb-4">
                             <a class="card-link" href="../collection/juma.php">
                                 <div class="card shadow card-db">
                                     <div class="card-body">
-                                        <h4>Juma Collection</h4>
-                                        <h5>Tk. 1,32,353.00</h5>
+                                        <h5>Juma Collection</h5>
+                                        <h6>Yearly: </h6>
+                                        <h6>Current Month: </h6>
                                     </div>
+                                    <div id="divGraph" class="p-3 bg-ligh"></div>
                                 </div>
                             </a>
                         </div>
-                        <div class="col-md-4 col-sm-6 col-12 col-lg-3 my-2">
+
+                        <div class="col-md-4 col-sm-12 mb-4">
                             <a class="card-link" href="../donation/index.php">
                                 <div class="card shadow card-db">
                                     <div class="card-body">
-                                        <h4>Donation</h4>
+                                        <h5>Donation</h5>
+                                        <h6>Yearly: </h6>
+                                        <h6>Current Month: </h6>
+                                    </div>
+                                    <div id="donGraph" class="p-3 bg-ligh"></div>
+                                </div>
+                            </a>
+                        </div>
+                        
+                        <div class="col-md-4 col-sm-12 mb-4">
+                            <a class="card-link" href="../salary/index.php">
+                                <div class="card shadow card-db">
+                                    <div class="card-body">
+                                    <h5>Salary</h5>
                                         <h5>Tk. 1,32,353.00</h5>
                                     </div>
                                 </div>
                             </a>
                         </div>
-                        <div class="col-md-4 col-sm-6 col-12 col-lg-3 my-2">
-                            <div class="card shadow card-db">
-                                <div class="card-body">
-                                    <h4>Vivid</h4>
-                                    <h5>Tk. 1,32,353.00</h5>
+                        <div class="col-md-4 col-sm-12 mb-4">
+                            <a class="card-link" href="../bills/index.php">
+                                <div class="card shadow card-db">
+                                    <div class="card-body">
+                                    <h5>Utility Bills</h5>
+                                        <h5>Tk. 1,32,353.00</h5>
+                                    </div>
                                 </div>
-                            </div>
+                            </a>
                         </div>
-                        <div class="col-md-4 col-sm-6 col-12 col-lg-3 my-2">
-                            <div class="card shadow card-db">
-                                <div class="card-body">
-                                    <h4>Electricity bill</h4>
-                                    <h5>Tk. 1,32,353.00</h5>
+                        <div class="col-md-4 col-sm-12 mb-4">
+                            <a class="card-link" href="../bills/index.php">
+                                <div class="card shadow card-db">
+                                    <div class="card-body">
+                                    <h5>Vivid</h5>
+                                        <h5>Tk. 1,32,353.00</h5>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4 col-sm-6 col-12 col-lg-3 my-2">
-                            <div class="card shadow card-db">
-                                <div class="card-body">
-                                    <h4>Utility Bills</h4>
-                                    <h5>Tk. 1,32,353.00</h5>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4 col-sm-6 col-12 col-lg-3 my-2">
-                            <div class="card shadow card-db">
-                                <div class="card-body">
-                                    <h4>Renuvation</h4>
-                                    <h5>Tk. 1,32,353.00</h5>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4 col-sm-6 col-12 col-lg-3 my-2">
-                            <div class="card shadow card-db">
-                                <div class="card-body">
-                                    <h4>Cash Expenses</h4>
-                                    <h5>Tk. 1,32,353.00</h5>
-                                </div>
-                            </div>
+                            </a>
                         </div>
                     </div>
+                    
+                </div>
+                <div class="col-md-6 col-sm-12">
+                    <h5>Account Ledger</h5>
+                    <table class="table table-dark">
+                        <thead>
+                            <tr>
+                                <th>Month</th>
+                                <th>Description</th>
+                                <th>Dr.</th>
+                                <th>Cr.</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Data</td>
+                                <td>Data</td>
+                                <td>Data</td>
+                                <td>Data</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
                 </div>
             </div>
         </div>
-    
     </div>
-
+    
+    <script src="../assets/js/main.js"></script>
     <script>
-        function expMenu(){
-            $('[id^=exp_]').toggleClass('d-none').toggleClass('d-block');
-            $('#sidebar, #su-menu').toggleClass('active');
-            $('.right-bar').toggleClass('right-bar-active');
-        }
+        $(document).ready(function(){
+            $.ajax({
+                url:"../collection/ucg.php",
+                type: "post",
+                data: {
+                    y:(new Date).getFullYear()
+                },
+                success: function(bar_graph){
+                    $("#collGraph").html(bar_graph);
+                    $("#cg").chart = new Chart($("#cg"),$("#cg").data("settings"));
+                }
+            });
+
+            $.ajax({
+                url:"../collection/queries.php",
+                type: "post",
+                data: {
+                    m:(new Date).getMonth() + 1,y:(new Date).getFullYear()
+                },
+                success: function(bar_graph){
+                    $("#divGraph").html(bar_graph);
+                    $("#graph").chart = new Chart($("#graph"),$("#graph").data("settings"));
+                }
+            });
+        });
     </script>
 </body>
 </html>

@@ -26,7 +26,10 @@
             </div>
         </div>
     </div>
-    
+
+    <style>
+        
+    </style>
     <div class="left-bar">
         <div id="su-menu" onclick="expMenu();">
             <svg id="exp_status" class="d-none" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-right" viewBox="0 0 16 16">
