@@ -1,4 +1,7 @@
-<?php require_once('../assets/sidebar/sidebarImages.php');?>
+<?php 
+    require_once('../assets/sidebar/sidebarImages.php');
+    require_once('../admin/db/db.php');
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -84,8 +87,12 @@
                             <a class="card-link" href="../collection/collection.php">
                                 <div class="card shadow card-db">
                                     <div class="card-body">
-                                        <h5>Monthly Collection</h5>
-                                        <h6>Collected Amount: </h6>
+                                        <?php
+                                            $sql = "SELECT SUM(coll_amount) AS cl FROM collection WHERE year(coll_date) = ".date("Y")." GROUP BY year(coll_date)";
+                                            $collAmount = db::getInstance()->query($sql)->getResults();
+                                        ?>
+                                        <h5>Resident Collection</h5>
+                                        <h6>Yearly: <?php echo $collAmount[0]->cl; ?></h6>
                                         <h6>Current Month: </h6>
 
                                     </div>
@@ -98,8 +105,12 @@
                             <a class="card-link" href="../collection/juma.php">
                                 <div class="card shadow card-db">
                                     <div class="card-body">
+                                        <?php
+                                            $sql = "SELECT SUM(juma_amount) AS cl FROM juma WHERE year(juma_date) = ".date("Y");
+                                            $jumaAmount = db::getInstance()->query($sql)->getResults();
+                                        ?>
                                         <h5>Juma Collection</h5>
-                                        <h6>Yearly: </h6>
+                                        <h6>Yearly: <?php echo $jumaAmount[0]->cl;?> </h6>
                                         <h6>Current Month: </h6>
                                     </div>
                                     <div id="divGraph" class="p-3 bg-ligh"></div>
@@ -111,8 +122,12 @@
                             <a class="card-link" href="../donation/index.php">
                                 <div class="card shadow card-db">
                                     <div class="card-body">
+                                        <?php
+                                            $sql = "SELECT SUM(don_amount) AS cl FROM donation WHERE year(don_date) = ".date("Y");
+                                            $donAmount = db::getInstance()->query($sql)->getResults();
+                                        ?>
                                         <h5>Donation</h5>
-                                        <h6>Yearly: </h6>
+                                        <h6>Yearly: <?php echo $donAmount[0]->cl;?> </h6></h6>
                                         <h6>Current Month: </h6>
                                     </div>
                                     <div id="donGraph" class="p-3 bg-ligh"></div>
@@ -144,8 +159,59 @@
                             <a class="card-link" href="../bills/index.php">
                                 <div class="card shadow card-db">
                                     <div class="card-body">
-                                    <h5>Vivid</h5>
-                                        <h5>Tk. 1,32,353.00</h5>
+                                        <h5>Simple Account - <?php echo date("Y") ?></h5>
+                                        <table class="table table-dark">
+                                            <thead>
+                                                <tr>
+                                                    <th>No</th>
+                                                    <th>Description</th>
+                                                    <th>Dr.</th>
+                                                    <th>Cr.</th>
+                                                </tr>
+                                                
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>01</td>
+                                                    <td>Resident Collection:</td>
+                                                    <td class="text-end"><?php echo number_format($collAmount[0]->cl,2,".",","); ?> </td>
+                                                    <td class="text-end"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>02</td>
+                                                    <td>Juma Collection:</td>
+                                                    <td class="text-end"><?php echo number_format($jumaAmount[0]->cl,2,".",",");?></td>
+                                                    <td class="text-end"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>03</td>
+                                                    <td>Get Donation:</td>
+                                                    <td class="text-end"><?php echo number_format($donAmount[0]->cl,2,".",",");?></td>
+                                                    <td class="text-end"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>04</td>
+                                                    <td>Salary Imam & Khatib: </td>
+                                                    <td></td>
+                                                    <td>196,000.00</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>05</td>
+                                                    <td>Salary Muazzin : </td>
+                                                    <td></td>
+                                                    <td>80,000.00</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>06</td>
+                                                    <td>Renuvation : </td>
+                                                    <td></td>
+                                                    <td></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <h6> </h6>
+                                        <h6> </h6>
+                                        <h6> </h6>
                                     </div>
                                 </div>
                             </a>
@@ -203,6 +269,18 @@
                 success: function(bar_graph){
                     $("#divGraph").html(bar_graph);
                     $("#graph").chart = new Chart($("#graph"),$("#graph").data("settings"));
+                }
+            });
+
+            $.ajax({
+                url:"../collection/udn.php",
+                type: "post",
+                data: {
+                    y:(new Date).getFullYear()
+                },
+                success: function(bar_graph){
+                    $("#donGraph").html(bar_graph);
+                    $("#dg").chart = new Chart($("#dg"),$("#dg").data("settings"));
                 }
             });
         });

@@ -158,7 +158,15 @@
                                     </div>
                                     <div class="col-md-6 col-sm-12 mb-3">
                                         <label for="wages_deg" class="form-label">Designation</label>
-                                        <input type="text" class="form-control" id="wages_deg" name="wages_deg">
+                                        <select class="form-select" aria-label="Wages Designatioin" name="wages_deg" id="wages_deg">
+                                            <option selected>Please Select a Designation</option>
+                                            <?php 
+                                                $res = db::getInstance()->query("SELECT * FROM jobs")->getResults();
+                                                foreach($res as $key => $deg):
+                                            ?>
+                                            <option value="<?php echo $deg->job_id ?>"><?php echo $deg->job_title; ?></option>
+                                            <?php endforeach; ?>
+                                        </select>
                                     </div>
                                     <div class="col-md-6 col-sm-12 mb-3">
                                         <label for="wages_remarks" class="form-label">Remarks</label>

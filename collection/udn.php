@@ -1,11 +1,9 @@
 <?php
     require_once('../admin/db/db.php');
     $output['msg'] = "Everything is Fine";
-    if(isset($_POST['m'])){
-        if(isset($_POST['y'])){
-            $res = db::getInstance()->query("SELECT * FROM juma WHERE MONTH(juma_date) = '".$_POST['m']."' AND YEAR(juma_date) = '".$_POST['y']."'")->getResults();
-        }else $output['msg'] = "Year Not set or Year Errors";
-    }else $output['msg'] = "Month Not Set Or Month Errors";
+    if(isset($_POST['y'])){
+            $res = db::getInstance()->query("SELECT month(don_date) as month, sum(don_amount) AS amt FROM donation WHERE year(don_date) = ".$_POST['y']." GROUP BY month(don_date);")->getResults();
+    }else $output['msg'] = "Year Not set or Year Errors";
 
     $date = "";
     $amount = "";
@@ -13,8 +11,8 @@
     $bar_graph = "";
     
     foreach($res as $key => $value){
-        $amount .= '"'.$value->juma_amount.'",';
-        $date .= '"'.$value->juma_date.'",';
+        $amount .= '"'.$value->amt.'",';
+        $date .= '"'.$value->month.'",';
         $colors .= '"rgba('.rand(0,255).','.rand(0,255).','.rand(0,255).',0.5)",';
     }
     $amount = substr($amount,0,-1);             // Remove Last Comma. 
@@ -22,15 +20,15 @@
     $colors = substr($colors,0,-1);
 
     $bar_graph = '
-    <canvas id="graph" data-settings=
+    <canvas id="dg" data-settings=
     \'{
-        "type":"line",
+        "type":"bar",
         "data": 
         {
             "labels":['. $date .'],
             "datasets":
             [{
-                "label": "Juma Collection",
+                "label": "Collected Donation",
                 "data":['.$amount.'],
                 "backgroundColor": ['.$colors.'],
                 "borderColor": ['.$colors.'],
