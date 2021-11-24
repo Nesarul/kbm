@@ -78,7 +78,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="db-title">
-                    Dear Bangladesh.
+                    <h3>Dashboard</h3>
                     <div class="stripe"></div>
                 </div>
                 <div class="col-md-12 col-sm-12">
@@ -138,9 +138,39 @@
                         <div class="col-md-4 col-sm-12 mb-4">
                             <a class="card-link" href="../salary/index.php">
                                 <div class="card shadow card-db">
-                                    <div class="card-body">
-                                    <h5>Salary</h5>
-                                        <h5>Tk. 1,32,353.00</h5>
+                                    <div class="card-body" style="min-height:250px">
+                                        <h5>Salary - <?php echo date("Y"); ?></h5>
+                                        <hr>
+                                        <div class="container-fluid">
+                                            <div class="row">
+                                                <div class="col-sm-6">
+                                                    <h6>Khatib</h6>
+                                                </div>
+                                                <div class="col-sm-6 text-end">
+                                                    <h6>-</h6>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <h6>Imam</h6>
+                                                </div>
+                                                <div class="col-sm-6 text-end">
+                                                    <h6>120000</h6>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <h6>Muazzin</h6>
+                                                </div>
+                                                <div class="col-sm-6 text-end">
+                                                    <h6>96000</h6>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <h6>Cleaner</h6>
+                                                </div>
+                                                <div class="col-sm-6 text-end">
+                                                    <h6>96000</h6>
+                                                </div>
+                                            </div>
+                                            <hr>
+                                            
+                                        </div>
                                     </div>
                                 </div>
                             </a>
@@ -148,9 +178,38 @@
                         <div class="col-md-4 col-sm-12 mb-4">
                             <a class="card-link" href="../bills/index.php">
                                 <div class="card shadow card-db">
-                                    <div class="card-body">
-                                    <h5>Utility Bills</h5>
-                                        <h5>Tk. 1,32,353.00</h5>
+                                    <div class="card-body" style="min-height:250px">
+                                        <h5>Utility Bills</h5>
+                                        <hr>
+                                        <div class="container-fluid">
+                                            <div class="row">
+                                                <div class="col-sm-6">
+                                                    <h6>Electricity</h6>
+                                                </div>
+                                                <div class="col-sm-6 text-end">
+                                                    <h6>-</h6>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <h6>Stationary</h6>
+                                                </div>
+                                                <div class="col-sm-6 text-end">
+                                                    <h6>120000</h6>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <h6>Grossary</h6>
+                                                </div>
+                                                <div class="col-sm-6 text-end">
+                                                    <h6>96000</h6>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <h6>Labour</h6>
+                                                </div>
+                                                <div class="col-sm-6 text-end">
+                                                    <h6>96000</h6>
+                                                </div>
+                                            </div>
+                                            <hr>
+                                        </div>
                                     </div>
                                 </div>
                             </a>
@@ -158,88 +217,126 @@
                         <div class="col-md-4 col-sm-12 mb-4">
                             <a class="card-link" href="../bills/index.php">
                                 <div class="card shadow card-db">
-                                    <div class="card-body">
-                                        <h5>Simple Account - <?php echo date("Y") ?></h5>
-                                        <table class="table table-dark">
-                                            <thead>
-                                                <tr>
-                                                    <th>No</th>
-                                                    <th>Description</th>
-                                                    <th>Dr.</th>
-                                                    <th>Cr.</th>
-                                                </tr>
-                                                
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td>01</td>
-                                                    <td>Resident Collection:</td>
-                                                    <td class="text-end"><?php echo number_format($collAmount[0]->cl,2,".",","); ?> </td>
-                                                    <td class="text-end"></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>02</td>
-                                                    <td>Juma Collection:</td>
-                                                    <td class="text-end"><?php echo number_format($jumaAmount[0]->cl,2,".",",");?></td>
-                                                    <td class="text-end"></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>03</td>
-                                                    <td>Get Donation:</td>
-                                                    <td class="text-end"><?php echo number_format($donAmount[0]->cl,2,".",",");?></td>
-                                                    <td class="text-end"></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>04</td>
-                                                    <td>Salary Imam & Khatib: </td>
-                                                    <td></td>
-                                                    <td>196,000.00</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>05</td>
-                                                    <td>Salary Muazzin : </td>
-                                                    <td></td>
-                                                    <td>80,000.00</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>06</td>
-                                                    <td>Renuvation : </td>
-                                                    <td></td>
-                                                    <td></td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                        <h6> </h6>
-                                        <h6> </h6>
-                                        <h6> </h6>
+                                    <div class="card-body" style="min-height:250px">
+                                        <h5>Waz Mahfil</h5>
+                                        <hr>
+                                        <div class="container-fluid">
+                                            <div class="row">
+                                                <div class="col-sm-6">
+                                                    <h6>Electricity</h6>
+                                                </div>
+                                                <div class="col-sm-6 text-end">
+                                                    <h6>-</h6>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <h6>Stationary</h6>
+                                                </div>
+                                                <div class="col-sm-6 text-end">
+                                                    <h6>120000</h6>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <h6>Grossary</h6>
+                                                </div>
+                                                <div class="col-sm-6 text-end">
+                                                    <h6>96000</h6>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <h6>Labour</h6>
+                                                </div>
+                                                <div class="col-sm-6 text-end">
+                                                    <h6>96000</h6>
+                                                </div>
+                                            </div>
+                                            <hr>
+                                        </div>
                                     </div>
                                 </div>
                             </a>
+                        </div>
+                        <div class="col-md-6 col-sm-12 mb-4">
+                            <div class="card shadow card-db">
+                                <div class="card-body">
+                                    <h5>Simple Account - <?php echo date("Y") ?></h5>
+                                    <table class="table table-dark">
+                                        <thead>
+                                            <tr>
+                                                <th>No</th>
+                                                <th>Description</th>
+                                                <th>Dr.</th>
+                                                <th>Cr.</th>
+                                            </tr>
+                                            
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>01</td>
+                                                <td>Resident Collection:</td>
+                                                <td class="text-end"><?php echo number_format($collAmount[0]->cl,2,".",","); ?> </td>
+                                                <td class="text-end"></td>
+                                            </tr>
+                                            <tr>
+                                                <td>02</td>
+                                                <td>Juma Collection:</td>
+                                                <td class="text-end"><?php echo number_format($jumaAmount[0]->cl,2,".",",");?></td>
+                                                <td class="text-end"></td>
+                                            </tr>
+                                            <tr>
+                                                <td>03</td>
+                                                <td>Get Donation:</td>
+                                                <td class="text-end"><?php echo number_format($donAmount[0]->cl,2,".",",");?></td>
+                                                <td class="text-end"></td>
+                                            </tr>
+                                            <tr>
+                                                <td>03</td>
+                                                <td>Waz Collection:</td>
+                                                <td class="text-end"><?php echo number_format($donAmount[0]->cl,2,".",",");?></td>
+                                                <td class="text-end"></td>
+                                            </tr>
+                                            <tr>
+                                                <td>04</td>
+                                                <td>Khatib: </td>
+                                                <td></td>
+                                                <td class="text-end">196,000.00</td>
+                                            </tr>
+                                            <tr>
+                                                <td>05</td>
+                                                <td>Salary Imam: </td>
+                                                <td></td>
+                                                <td class="text-end">196,000.00</td>
+                                            </tr>
+                                            <tr>
+                                                <td>06</td>
+                                                <td>Salary Muazzin : </td>
+                                                <td class="text-end"></td>
+                                                <td class="text-end">80,000.00</td>
+                                            </tr>
+                                            <tr>
+                                                <td>07</td>
+                                                <td>Salary Cleaner : </td>
+                                                <td class="text-end"></td>
+                                                <td class="text-end">80,000.00</td>
+                                            </tr>
+                                            <tr>
+                                                <td>08</td>
+                                                <td>Waz Expences : </td>
+                                                <td class="text-end"></td>
+                                                <td class="text-end"></td>
+                                            </tr>
+                                            <tr>
+                                                <td>09</td>
+                                                <td>Utility Bills : </td>
+                                                <td class="text-end"></td>
+                                                <td class="text-end"></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <h6> </h6>
+                                    <h6> </h6>
+                                    <h6> </h6>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    
-                </div>
-                <div class="col-md-6 col-sm-12">
-                    <h5>Account Ledger</h5>
-                    <table class="table table-dark">
-                        <thead>
-                            <tr>
-                                <th>Month</th>
-                                <th>Description</th>
-                                <th>Dr.</th>
-                                <th>Cr.</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Data</td>
-                                <td>Data</td>
-                                <td>Data</td>
-                                <td>Data</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    
                 </div>
             </div>
         </div>

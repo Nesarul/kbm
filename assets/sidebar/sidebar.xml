@@ -16,4 +16,16 @@
 		<caption>Comitee</caption>
 		<link>../committee/index.php</link>
 	</item>
+	<item>
+		<caption>Waz Mahfil</caption>
+		<link>../waz/index.php</link>
+	</item>
+	<item>
+		<caption>Slary</caption>
+		<link>../salary/index.php</link>
+	</item>
+	<item>
+		<caption>Utility Bills</caption>
+		<link>../bills/index.php</link>
+	</item>
 </Menu>
