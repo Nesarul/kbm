@@ -143,30 +143,18 @@
                                         <hr>
                                         <div class="container-fluid">
                                             <div class="row">
-                                                <div class="col-sm-6">
-                                                    <h6>Khatib</h6>
-                                                </div>
-                                                <div class="col-sm-6 text-end">
-                                                    <h6>-</h6>
-                                                </div>
-                                                <div class="col-sm-6">
-                                                    <h6>Imam</h6>
-                                                </div>
-                                                <div class="col-sm-6 text-end">
-                                                    <h6>120000</h6>
-                                                </div>
-                                                <div class="col-sm-6">
-                                                    <h6>Muazzin</h6>
-                                                </div>
-                                                <div class="col-sm-6 text-end">
-                                                    <h6>96000</h6>
-                                                </div>
-                                                <div class="col-sm-6">
-                                                    <h6>Cleaner</h6>
-                                                </div>
-                                                <div class="col-sm-6 text-end">
-                                                    <h6>96000</h6>
-                                                </div>
+                                                <?php
+                                                    $sql = "SELECT j.job_title, SUM(w.wages_amount) AS salary FROM wages AS w RIGHT JOIN jobs AS j ON j.job_id = w.wages_designation GROUP BY w.wages_designation";
+                                                    $res = db::getInstance()->query($sql)->getResults();
+                                                    foreach($res as $key => $jr):
+                                                ?>
+                                                    <div class="col-sm-6">
+                                                        <h6><?php echo $jr->job_title; ?></h6>
+                                                    </div>
+                                                    <div class="col-sm-6 text-end">
+                                                        <h6><?php echo $jr->salary; ?></h6>
+                                                    </div>
+                                                <?php endforeach ?>
                                             </div>
                                             <hr>
                                             
@@ -223,10 +211,15 @@
                                         <div class="container-fluid">
                                             <div class="row">
                                                 <div class="col-sm-6">
-                                                    <h6>Electricity</h6>
+                                                    <h6>Collection : </h6>
                                                 </div>
                                                 <div class="col-sm-6 text-end">
-                                                    <h6>-</h6>
+                                                    <h6><?php 
+                                                    $sql = "SELECT SUM(waz_amount) AS amount FROM waz_collection WHERE year(waz_date) = ".date("Y");
+                                                            $res = db::getInstance()->query($sql)->getResults();
+                                                            echo $res[0]->amount;
+                                                        ?>
+                                                    </h6>
                                                 </div>
                                                 <div class="col-sm-6">
                                                     <h6>Stationary</h6>

@@ -240,3 +240,71 @@ updateWages = () =>{
         },
     });
 }
+
+updateWazEntry = () =>{
+    $.ajax({
+        type:'POST',
+        url:'wazEntry.php',
+        data: $('#formWaz').serialize(),
+        dataType:'JSON',
+        success:function(data){
+            (data['msg']==='success') ? $('#success-entry').removeClass('d-none').addClass('d-block'):'null';
+            if(data['msg'] === 'success'){
+                var myInterval = setInterval(function () {
+                    $('#success-entry').removeClass('d-block').addClass('d-none');
+                },2000);
+            }
+        },
+        error:function(data){
+            alert("Failed");
+        },
+    });
+}
+wazCollYear = () =>{
+    $.ajax({
+        type:'POST',
+        url:'wazCollection.php',
+        data: {y:$('#collY').val()},
+        dataType:'JSON',
+        success:function(data){
+            $('#twa-collYear').html(data);
+        },
+        error:function(data){
+            alert("Failed");
+        },
+    });
+}
+updateWazExpense = () =>{
+    $.ajax({
+        type:'POST',
+        url:'wazExpensesEntry.php',
+        data: $('#formWazExpenseEntry').serialize(),
+        dataType:'JSON',
+        success:function(data){
+            (data['msg']==='success') ? $('#exp_success-entry').removeClass('d-none').addClass('d-block'):'null';
+            if(data['msg'] === 'success'){
+                var myInterval = setInterval(function () {
+                    $('#exp_success-entry').removeClass('d-block').addClass('d-none');
+                },2000);
+            }
+        },
+        error:function(data){
+            alert("Failed");
+        },
+    });
+}
+
+wazExpYear = () =>{
+    $.ajax({
+        type:'POST',
+        url:'wazExpenses.php',
+        data: {y:$('#expY').val()},
+        dataType:'JSON',
+        success:function(data){
+            $('#twe-expYear').html(data);
+        },
+        error:function(data){
+            alert("Failed");
+        },
+    });
+}
